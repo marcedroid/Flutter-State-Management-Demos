@@ -1,16 +1,27 @@
-# state_management
+# Manejo de estados en Flutter
 
 Diferentes formas para manejo de estados en flutter.
 
-## Getting Started
+![Manejo de estados en Flutter](https://user-images.githubusercontent.com/2531939/92287705-259ee500-eed0-11ea-8c3a-0d027aec1a6f.gif)
 
-This project is a starting point for a Flutter application.
+**La aplicación cuenta con tres vistas:**
 
-A few resources to get you started if this is your first Flutter project:
+- **User**: En esta vista al cambiar los valores del campo de texto también se actualizará el título del AppBar, además se actualizará en nombre de usuario en la vista cart.
 
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
+- **Catalog**: En esta vista se muestra un listado de Items y al interactuar con cada uno de ellos se puede ver que el ícono para agregar/eliminar cambia, también se actualiza el contador de items del AppBar y el listado de items de la vista cart.
 
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+- **Cart**: En esta vista se muestra un listado de los productos que se han seleccionado en la vista de catalog también se muestra el precio total y el nombre de usuario junto con las iniciales del mismo en un CircleAvatar.
+
+**La rama *master* solo tiene el código base de la aplicación.**
+
+------------
+
+## [BLoC Pattern sin librerías](https://github.com/marcedroid/Flutter-State-Management-Demos/tree/bloc-no-libraries "BLoC Pattern sin librerías")
+
+Implementación del patrón BLoC sin utilizar librerías de terceros.
+
+**El código se puede encontrar en la rama *bloc-no-libraries*.**
+
+**La guía de implementación se puede encontrar en dev.to**
+
+[Manejo de estados en flutter, BLoC Pattern sin librerías](https://dev.to/marcelo/manejo-de-estados-en-flutter-bloc-pattern-sin-librerias-558c "Manejo de estados en flutter, BLoC Pattern sin librerías")
