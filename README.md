@@ -25,3 +25,15 @@ Implementación del patrón BLoC sin utilizar librerías de terceros.
 **La guía de implementación se puede encontrar en dev.to**
 
 [Manejo de estados en flutter, BLoC Pattern sin librerías](https://dev.to/marcelo/manejo-de-estados-en-flutter-bloc-pattern-sin-librerias-558c "Manejo de estados en flutter, BLoC Pattern sin librerías")
+
+------------
+
+## [Manejo de estados usando la librería Provider](https://github.com/marcedroid/Flutter-State-Management-Demos/tree/provider "Manejo de estados usando la librería Provider")
+
+Uso de la librería Provider para el manejo de estados en Flutter.
+
+**El código se puede encontrar en la rama *provider*.**
+
+**La guía de implementación se puede encontrar en dev.to**
+
+[Manejo de estados usando la librería Provider](https://dev.to/marcelo/manejo-de-estados-en-flutter-provider-5dkd "Manejo de estados usando la librería Provider")
