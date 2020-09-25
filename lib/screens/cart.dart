@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:state_management/providers/catalog_provider.dart';
+import 'package:state_management/providers/user_provider.dart';
 import 'package:state_management/utils/get_initials.dart';
+import 'package:provider/provider.dart';
+import '../utils/format_total.dart';
 
 class CartScreen extends StatefulWidget {
   @override
@@ -9,6 +13,9 @@ class CartScreen extends StatefulWidget {
 class _CartScreenState extends State<CartScreen> {
   @override
   Widget build(BuildContext context) {
+    final _userProvider = Provider.of<UserProvider>(context);
+    final _catalogProvider = Provider.of<CatalogProvider>(context);
+
     return Scaffold(
       appBar: AppBar(
         title: Text('Cart'),
@@ -17,13 +24,15 @@ class _CartScreenState extends State<CartScreen> {
         children: [
           Expanded(
             child: ListView.builder(
-              itemCount: 2,
+              itemCount: _catalogProvider.catalog.length,
               itemBuilder: (context, index) => ListTile(
                 title: Text(
-                  'Item Name'.toUpperCase(),
+                  '${_catalogProvider.catalog[index].name}'.toUpperCase(),
                   style: TextStyle(fontWeight: FontWeight.bold),
                 ),
-                trailing: Text('\$00.00'),
+                trailing: Text(
+                  '\$${_catalogProvider.catalog[index].price.toStringAsFixed(2)}',
+                ),
               ),
             ),
           ),
@@ -36,10 +45,11 @@ class _CartScreenState extends State<CartScreen> {
                 Column(
                   children: [
                     CircleAvatar(
-                      child: Text(getInitials('Guest').toUpperCase()),
+                      child: Text(
+                          getInitials(_userProvider.username).toUpperCase()),
                     ),
                     Text(
-                      'Guest',
+                      '${_userProvider.username}',
                       style: TextStyle(
                         fontWeight: FontWeight.bold,
                       ),
@@ -57,7 +67,7 @@ class _CartScreenState extends State<CartScreen> {
                       ),
                     ),
                     Text(
-                      '\$00.00',
+                      '\$${formatTotal(_catalogProvider.catalog)}',
                       style: TextStyle(
                         fontSize: 20.0,
                         fontWeight: FontWeight.bold,

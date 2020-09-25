@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:state_management/providers/user_provider.dart';
 
 class UserScreen extends StatefulWidget {
   @override
@@ -6,14 +8,23 @@ class UserScreen extends StatefulWidget {
 }
 
 class _UserScreenState extends State<UserScreen> {
+  TextEditingController _textEditingController;
+
+  @override
+  void initState() {
+    super.initState();
+
+    _textEditingController =
+        TextEditingController(text: context.read<UserProvider>().username);
+  }
+
   @override
   Widget build(BuildContext context) {
-    TextEditingController _textEditingController =
-        TextEditingController(text: 'Guest');
+    final _userProvider = Provider.of<UserProvider>(context);
 
     return Scaffold(
       appBar: AppBar(
-        title: Text('User'),
+        title: Text('User - ${_userProvider.username}'),
       ),
       body: Padding(
         padding: const EdgeInsets.all(20.0),
@@ -27,7 +38,9 @@ class _UserScreenState extends State<UserScreen> {
             helperText: 'Guest by default',
             labelText: 'User Name',
           ),
-          onChanged: (value) {},
+          onChanged: (value) {
+            _userProvider.onChange(value);
+          },
         ),
       ),
     );

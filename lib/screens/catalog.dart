@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:state_management/models/item_model.dart';
+import 'package:state_management/providers/catalog_provider.dart';
 
 import 'package:state_management/utils/hex_to_color.dart';
 import 'package:state_management/items/items.dart' as sampleData;
@@ -34,7 +36,7 @@ class _CatalogScreenState extends State<CatalogScreen> {
                   child: CircleAvatar(
                     backgroundColor: Colors.amberAccent,
                     child: Text(
-                      '2',
+                      '${context.watch<CatalogProvider>().catalog.length}',
                       style: TextStyle(
                         fontWeight: FontWeight.bold,
                         fontSize: 14.0,
@@ -89,6 +91,9 @@ class _ListViewWidgetState extends State<ListViewWidget> {
 
   @override
   Widget build(BuildContext context) {
+    final _catalogProvider =
+        Provider.of<CatalogProvider>(context, listen: false);
+
     return ListView.builder(
       itemCount: items.length,
       itemBuilder: (context, index) => Padding(
@@ -126,6 +131,12 @@ class _ListViewWidgetState extends State<ListViewWidget> {
                     color: Colors.green,
                   ),
             onPressed: () {
+              if (items[index].addedToCart) {
+                _catalogProvider.removeFromCatalog(items[index]);
+              } else {
+                _catalogProvider.addToCatalog(items[index]);
+              }
+
               setState(() {
                 items[index].toggleAdded();
               });
